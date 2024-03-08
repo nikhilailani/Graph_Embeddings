@@ -1,0 +1,107 @@
+{% block body %}
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Set page title -->
+<title>Job Recommendation</title>
+
+<!-- Include custom JavaScript -->
+<script src="static/js/script.js" defer></script>
+
+<!-- Include custom CSS -->
+<link rel="stylesheet" href="/static/css/main.cs">
+
+<!-- Header -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Job Recommendation</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Candidate Form -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="form-container">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+
+                    <!-- Candidate ID -->
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <div class="w-40 mr-auto">
+                            {{ form.candidate_id.label(class_="form-control-label") }}
+                            {{ form.candidate_id(class_="form-control") }}
+                        </div> 
+                    </div>
+
+                    <!-- Education and Experience -->
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <div class="w-40 me-auto">
+                            {{ form.education.label(class_="form-control-label") }}
+                            {{ form.education(class_="form-control") }}
+                        </div>
+                        <div class="w-40 ml-auto">
+                            {{ form.experience.label(class_="form-control-label") }}
+                            {{ form.experience(class_="form-control") }}
+                        </div>
+                    </div>
+
+                    <!-- Country, State, and City -->
+                    <div class="d-flex flex-row align-items-center mb-2">
+                        <div class="w-40 mr-auto">
+                            {{ form.country.label(class_="form-control-label") }}
+                            {{ form.country(class_="form-control") }}
+                        </div>
+                        <div class="w-40 me-auto">
+                            {{ form.state.label(class_="form-control-label") }}
+                            {{ form.state(class_="form-control") }}
+                        </div>
+                        <div class="w-40 ml-auto">
+                            {{ form.city.label(class_="form-control-label") }}
+                            {{ form.city(class_="form-control") }}
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div id="skills" class="mb-2">
+                        <label for="skills" class="form-control-label">Skills:</label>
+                        <div class="d-flex flex-row align-items-center mb-2">
+                            <input type="text" name="skills" class="form-control w-50 me-2" required>
+                            <button type="button" onclick="addSkill()" class="btn btn-success mx-2">+</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit button -->
+                    <div>
+                        <button type="submit" class="btn btn-success me-2">Submit</button>
+                    </div>
+                </form>
+
+                <!-- Display message if nothing found in the database -->
+                {% if nothing %}
+                <div class="panel-body">
+                    <h2>Sorry, Not Found In Database.</h2>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        &copy; 2024 Knowledge Graph. All Rights Reserved.
+    </div>
+</footer>
+{% endblock %}
